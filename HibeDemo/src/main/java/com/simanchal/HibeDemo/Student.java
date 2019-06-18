@@ -16,7 +16,7 @@ public class Student {
 	private StudentsName sname;
 	private String rollNo;
 	
-	@ManyToMany(mappedBy="student")
+	@ManyToMany(mappedBy="students")
 	private List<Laptop> laptops = new ArrayList<Laptop>();
 	
 	
