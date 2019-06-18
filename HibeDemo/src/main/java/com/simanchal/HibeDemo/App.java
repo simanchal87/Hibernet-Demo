@@ -16,6 +16,7 @@ public class App
     public static void main( String[] args )
     {
     	StudentsName sn = new StudentsName();
+    	Student s = new Student();
     	
     	sn.setFname("Fname");
     	sn.setMname("mname");
@@ -25,13 +26,15 @@ public class App
     	
     	lp.setLid(1);
     	lp.setLname("Dell");
-    		
-    	Student s = new Student();
     	
+    	
+    		
     	s.setsId(1);
     	s.setSname(sn);    	
     	s.setRollNo("123");
     	s.getLaptop().add(lp);
+    	
+    	lp.getStudent().add(s);
     	
     	
     	
