@@ -21,32 +21,32 @@ public class App
     	sn.setMname("mname");
     	sn.setLname("lname");
     	
+    	Laptop lp = new Laptop();
+    	
+    	lp.setLid(1);
+    	lp.setLname("Dell");
     		
     	Student s = new Student();
     	
     	s.setsId(1);
-    	
     	s.setSname(sn);    	
     	s.setRollNo("123");
+    	s.getLaptop().add(lp);
     	
     	
     	
-    	Configuration con = new Configuration().configure().addAnnotatedClass(Student.class);
-    	
+    	Configuration con = new Configuration().configure().addAnnotatedClass(Student.class).addAnnotatedClass(Laptop.class);
     	ServiceRegistry reg = new ServiceRegistryBuilder().applySettings(con.getProperties()).buildServiceRegistry();
-    	
     	SessionFactory sf = con.buildSessionFactory(reg);
-    	
     	Session session = sf.openSession();
     	
-    	Transaction tx = session.beginTransaction();
+    	session.beginTransaction();
     	
+    	session.save(lp);
     	session.save(s);
     	
-    	tx.commit();
     	
-    	s = (Student) session.get(Student.class, 105);
+    	session.getTransaction().commit();
     	
-    	System.out.println(s);
     }
 }

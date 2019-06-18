@@ -1,17 +1,32 @@
 package com.simanchal.HibeDemo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
-@Entity(name="st1")
+@Entity
 public class Student {
+	
 	
 	@Id
 	private int sId;
 	private StudentsName sname;
 	private String rollNo;
 	
+	@OneToMany
+	private List<Laptop> laptops = new ArrayList<Laptop>();
+	
+	
+	public List<Laptop> getLaptop() {
+		return laptops;
+	}
+	public void setLaptop(List<Laptop> laptop) {
+		this.laptops = laptop;
+	}
 	public int getsId() {
 		return sId;
 	}
