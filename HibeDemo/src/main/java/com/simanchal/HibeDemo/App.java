@@ -18,7 +18,7 @@ public class App
     	Student s = new Student();
     	
     	s.setsId(105);
-    	s.setName("Test Name5");
+    	
     	s.setRollNo("1235");
     	
     	Configuration con = new Configuration().configure().addAnnotatedClass(Student.class);
@@ -30,8 +30,13 @@ public class App
     	Session session = sf.openSession();
     	
     	Transaction tx = session.beginTransaction();
-    	session.save(s);
+    	
+//    	session.save(s);
     	
     	tx.commit();
+    	
+    	s = (Student) session.get(Student.class, 105);
+    	
+    	System.out.println(s);
     }
 }
