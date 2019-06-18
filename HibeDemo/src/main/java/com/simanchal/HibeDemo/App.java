@@ -15,11 +15,21 @@ public class App
 {
     public static void main( String[] args )
     {
+    	StudentsName sn = new StudentsName();
+    	
+    	sn.setFname("Fname");
+    	sn.setMname("mname");
+    	sn.setLname("lname");
+    	
+    		
     	Student s = new Student();
     	
-    	s.setsId(105);
+    	s.setsId(1);
     	
-    	s.setRollNo("1235");
+    	s.setSname(sn);    	
+    	s.setRollNo("123");
+    	
+    	
     	
     	Configuration con = new Configuration().configure().addAnnotatedClass(Student.class);
     	
@@ -31,7 +41,7 @@ public class App
     	
     	Transaction tx = session.beginTransaction();
     	
-//    	session.save(s);
+    	session.save(s);
     	
     	tx.commit();
     	

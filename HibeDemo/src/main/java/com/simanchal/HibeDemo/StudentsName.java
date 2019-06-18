@@ -1,5 +1,8 @@
 package com.simanchal.HibeDemo;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class StudentsName 
 {
 	private String fname;
