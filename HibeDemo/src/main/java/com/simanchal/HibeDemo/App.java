@@ -1,5 +1,7 @@
 package com.simanchal.HibeDemo;
 
+import java.util.Collection;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -12,29 +14,8 @@ public class App
 {
     public static void main( String[] args )
     {
-    	StudentsName sn = new StudentsName();
-    	Student s = new Student();
-    	
-    	sn.setFname("Fname5");
-    	sn.setMname("mname5");
-    	sn.setLname("lname5");
-    	
-    	Laptop lp = new Laptop();
-    	
-    	lp.setLid(5);
-    	lp.setLname("HP5");
-    	lp.setLprice("52000");
-    	
-    	
-    		
-    	s.setsId(5);
-    	s.setSname(sn);    	
-    	s.setRollNo("126");
-    	
-    	lp.setStudents(s);
-    	
-    	
-    	
+    	 	
+    	    	
     	Configuration con = new Configuration().configure().addAnnotatedClass(Student.class).addAnnotatedClass(Laptop.class);
     	ServiceRegistry reg = new ServiceRegistryBuilder().applySettings(con.getProperties()).buildServiceRegistry();
     	SessionFactory sf = con.buildSessionFactory(reg);
@@ -42,11 +23,23 @@ public class App
     	
     	session.beginTransaction();
     	
-    	session.save(lp);
-    	session.save(s);
+    	Student s1 =  (Student) session.get(Student.class, 3);
     	
+    	System.out.println(s1.getSname());
+    	
+    	
+    	
+    	
+    	Collection<Laptop> lps = s1.getLaptop();
+    	
+    	for(Laptop l : lps) {
+    		
+    		System.out.println(l);
+    	}
     	
     	session.getTransaction().commit();
+    	
+    
     	
     }
 }
