@@ -30,6 +30,8 @@ public class App
     	
     	
     	
+    	
+    /*	
     	Collection<Laptop> lps = s1.getLaptop();
     	
     	for(Laptop l : lps) {
@@ -38,7 +40,7 @@ public class App
     	}
     	
     	session.getTransaction().commit();
-    	
+    	*/
     
     	
     }

@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -17,7 +18,7 @@ public class Student {
 	private StudentsName sname;
 	private String rollNo;
 	
-	@OneToMany(mappedBy="students")
+	@OneToMany(mappedBy="students", fetch=FetchType.EAGER)
 	private Collection<Laptop> laptops = new ArrayList<Laptop>();
 	
 	
