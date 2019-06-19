@@ -1,11 +1,12 @@
 package com.simanchal.HibeDemo;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Student {
@@ -16,14 +17,14 @@ public class Student {
 	private StudentsName sname;
 	private String rollNo;
 	
-	@ManyToMany(mappedBy="students")
-	private List<Laptop> laptops = new ArrayList<Laptop>();
+	@OneToMany(mappedBy="students")
+	private Collection<Laptop> laptops = new ArrayList<Laptop>();
 	
 	
-	public List<Laptop> getLaptop() {
+	public Collection<Laptop> getLaptop() {
 		return laptops;
 	}
-	public void setLaptop(List<Laptop> laptop) {
+	public void setLaptop(Collection<Laptop> laptop) {
 		this.laptops = laptop;
 	}
 	public int getsId() {

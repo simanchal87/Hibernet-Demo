@@ -7,10 +7,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
-/**
- * Hello world!
- *
- */
+
 public class App 
 {
     public static void main( String[] args )
@@ -18,23 +15,23 @@ public class App
     	StudentsName sn = new StudentsName();
     	Student s = new Student();
     	
-    	sn.setFname("Fname");
-    	sn.setMname("mname");
-    	sn.setLname("lname");
+    	sn.setFname("Fname5");
+    	sn.setMname("mname5");
+    	sn.setLname("lname5");
     	
     	Laptop lp = new Laptop();
     	
-    	lp.setLid(1);
-    	lp.setLname("Dell");
+    	lp.setLid(5);
+    	lp.setLname("HP5");
+    	lp.setLprice("52000");
     	
     	
     		
-    	s.setsId(1);
+    	s.setsId(5);
     	s.setSname(sn);    	
-    	s.setRollNo("123");
-    	s.getLaptop().add(lp);
+    	s.setRollNo("126");
     	
-    	lp.getStudent().add(s);
+    	lp.setStudents(s);
     	
     	
     	

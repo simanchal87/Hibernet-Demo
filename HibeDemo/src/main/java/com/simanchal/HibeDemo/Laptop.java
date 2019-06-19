@@ -1,11 +1,8 @@
 package com.simanchal.HibeDemo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Laptop {
@@ -13,17 +10,26 @@ public class Laptop {
 	@Id
 	private int lid;
 	private String lname;
+	private String lprice;
 	
-	@ManyToMany
-	private List<Student> students = new ArrayList<Student>();
+	@ManyToOne
+	private Student students;
 	
 	
 	
-	public List<Student> getStudent() {
+	public String getLprice() {
+		return lprice;
+	}
+	public void setLprice(String lprice) {
+		this.lprice = lprice;
+	}
+	
+
+	public Student getStudents() {
 		return students;
 	}
-	public void setStudent(List<Student> student) {
-		this.students = student;
+	public void setStudents(Student students) {
+		this.students = students;
 	}
 	public int getLid() {
 		return lid;
