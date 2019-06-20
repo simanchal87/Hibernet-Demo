@@ -24,10 +24,19 @@ public class App
     	Session session = sf.openSession();
     	session.beginTransaction();
     	
-    	Query q = session.createQuery("from Student where rollNo=1");
+    	Query q = session.createQuery("select rollNo, sname, mark from Student where rollNo=8");
     	
-    	Student student = (Student)q.uniqueResult();
-    	System.out.println(student);
+    	Object[] student = (Object[]) q.uniqueResult();
+    	
+    	
+    	System.out.println(student[0] + " : " + student[1] + " "+ student[2]);
+    	
+    	for(Object o : student) {
+    		System.out.println(o);
+    		
+    	}
+    	
+    	
     	
     	
     	session.getTransaction().commit();
