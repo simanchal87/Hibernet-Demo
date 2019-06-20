@@ -1,49 +1,42 @@
 package com.simanchal.HibeDemo;
 
-import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 @Entity
-@Cacheable
-@Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
 public class Student {
 	
 	
 	@Id
-	private int sId;
+	private int rollNo;
 	private String sname;
-	private String rollNo;
+	private double mark ;
 	
 	
-	public int getsId() {
-		return sId;
+	public int getRollNo() {
+		return rollNo;
 	}
-	public void setsId(int sId) {
-		this.sId = sId;
+	public void setRollNo(int rollNo) {
+		this.rollNo = rollNo;
 	}
-	
-
 	public String getSname() {
 		return sname;
 	}
 	public void setSname(String sname) {
 		this.sname = sname;
 	}
-	public String getRollNo() {
-		return rollNo;
+	public double getMark() {
+		return mark;
 	}
-	public void setRollNo(String rollNo) {
-		this.rollNo = rollNo;
+	public void setMark(double mark) {
+		this.mark = mark;
 	}
-	
 	@Override
 	public String toString() {
-		return "Student [sId=" + sId + ", rollNo=" + rollNo + "]";
+		return "Student [rollNo=" + rollNo + ", sname=" + sname + ", mark=" + mark + "]";
 	}
+	
+	
 	
 	
 
