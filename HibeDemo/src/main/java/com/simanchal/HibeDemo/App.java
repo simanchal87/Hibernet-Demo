@@ -24,13 +24,10 @@ public class App
     	Session session = sf.openSession();
     	session.beginTransaction();
     	
-    	Query q = session.createQuery("from Student");
+    	Query q = session.createQuery("from Student where rollNo=1");
     	
-    	List<Student> students = q.list();
-    	
-    	for(Student s : students) {
-    		System.out.println(s);
-    	}
+    	Student student = (Student)q.uniqueResult();
+    	System.out.println(student);
     	
     	
     	session.getTransaction().commit();
