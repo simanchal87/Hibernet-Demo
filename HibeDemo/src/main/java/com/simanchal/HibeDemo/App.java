@@ -24,20 +24,13 @@ public class App
     	Session session = sf.openSession();
     	session.beginTransaction();
     	
-    	Query q = session.createQuery("select rollNo, sname, mark from Student");
+    	Query q = session.createQuery("select sum(mark) from Student where mark>60");
     	
-    	List<Object[]> students = (List<Object[]>) q.list();
+    	Double mark = (Double) q.uniqueResult();
     	
-    	for(Object[] student: students) {
-    		System.out.println(student[0] + " : " + student[1] + " "+ student[2]);
-    	}
+    		System.out.println(mark);
     	
-    	
-    	
-    	
-    	
-    	
-    	
+    	    	
     	session.getTransaction().commit();
     }
 }
