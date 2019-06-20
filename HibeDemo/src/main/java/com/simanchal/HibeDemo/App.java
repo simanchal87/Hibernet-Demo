@@ -1,8 +1,5 @@
 package com.simanchal.HibeDemo;
 
-import java.util.List;
-import java.util.Random;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,11 +18,13 @@ public class App
     	ServiceRegistry reg = new ServiceRegistryBuilder().applySettings(con.getProperties()).buildServiceRegistry();
     	SessionFactory sf = con.buildSessionFactory(reg);
     	
+    	double m = 60;
+    	
     	Session session = sf.openSession();
     	session.beginTransaction();
     	
-    	Query q = session.createQuery("select sum(mark) from Student where mark>60");
-    	
+    	Query q = session.createQuery("select sum(mark) from Student where mark> :m");
+    	q.setParameter("m", m);
     	Double mark = (Double) q.uniqueResult();
     	
     		System.out.println(mark);
