@@ -1,5 +1,6 @@
 package com.simanchal.HibeDemo;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -27,8 +28,11 @@ public class App
     	Session session = sf.openSession();
     	session.beginTransaction();
     	
+    	Query q1 = session.createQuery("FROM Student where sId=1");
+    	q1.setCacheable(true);
     	    	
-    	s1 =  (Student) session.get(Student.class, 1);
+    	s1 = (Student)q1.uniqueResult();
+    	//s1 =  (Student) session.get(Student.class, 1);
     	System.out.println(s1);
     	
     	session.getTransaction().commit();
@@ -38,7 +42,11 @@ public class App
     	Session session2 = sf.openSession();
     	session2.beginTransaction();
     	
-    	s1 =  (Student) session2.get(Student.class, 1);
+    	Query q2 = session2.createQuery("FROM Student where sId=1");
+    	q2.setCacheable(true);
+    	
+    	s1 = (Student)q2.uniqueResult();
+    	//s1 =  (Student) session2.get(Student.class, 1);
     	System.out.println(s1);
     	
     	session2.getTransaction().commit();
