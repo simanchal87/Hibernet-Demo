@@ -24,17 +24,16 @@ public class App
     	Session session = sf.openSession();
     	session.beginTransaction();
     	
-    	Query q = session.createQuery("select rollNo, sname, mark from Student where rollNo=8");
+    	Query q = session.createQuery("select rollNo, sname, mark from Student");
     	
-    	Object[] student = (Object[]) q.uniqueResult();
+    	List<Object[]> students = (List<Object[]>) q.list();
     	
-    	
-    	System.out.println(student[0] + " : " + student[1] + " "+ student[2]);
-    	
-    	for(Object o : student) {
-    		System.out.println(o);
-    		
+    	for(Object[] student: students) {
+    		System.out.println(student[0] + " : " + student[1] + " "+ student[2]);
     	}
+    	
+    	
+    	
     	
     	
     	
