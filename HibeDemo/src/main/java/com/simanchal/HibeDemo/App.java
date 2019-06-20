@@ -1,7 +1,9 @@
 package com.simanchal.HibeDemo;
 
+import java.util.List;
 import java.util.Random;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -22,17 +24,14 @@ public class App
     	Session session = sf.openSession();
     	session.beginTransaction();
     	
-    	Random rnd = new Random();
+    	Query q = session.createQuery("from Student");
     	
-    	for(int i=1; i<20; i++)
-    	{
-    		s1 = new Student();
-    		s1.setRollNo(i);
-    		s1.setSname("Student "+i);
-    		s1.setMark(rnd.nextInt(100));
-    		
-    		session.save(s1);
+    	List<Student> students = q.list();
+    	
+    	for(Student s : students) {
+    		System.out.println(s);
     	}
+    	
     	
     	session.getTransaction().commit();
     }
