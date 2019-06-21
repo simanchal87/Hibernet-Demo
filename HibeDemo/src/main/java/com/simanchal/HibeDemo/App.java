@@ -1,8 +1,9 @@
 package com.simanchal.HibeDemo;
 
 import java.util.List;
+import java.util.Map;
 
-import org.hibernate.Query;
+import org.hibernate.Criteria;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -24,13 +25,16 @@ public class App
     	Session session = sf.openSession();
     	session.beginTransaction();
     	
-    	SQLQuery q = session.createSQLQuery("select * from Student where mark> 60");
-    	q.addEntity(Student.class);
-    	List <Student> students = q.list();
+    	SQLQuery q = session.createSQLQuery("select sname, mark from Student where mark> 60");
+    	
+    	q.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+    	
+    	List students = q.list();
     			
-    	for(Student s : students)
+    	for(Object o : students)
     	{
-    		System.out.println(s);
+    		Map m = (Map)o;
+    		System.out.println(m.get("SNAME") + " : " + m.get("MARK"));
     	}
     	   	
     	session.getTransaction().commit();
