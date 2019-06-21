@@ -22,36 +22,19 @@ public class App
     	Session session = sf.openSession();
     	session.beginTransaction();
     	
-    	
-    	
-    	
-    	Laptop l = new Laptop();
+    	//get will run even if it's not used anywhere
+    	Laptop l = (Laptop) session.get(Laptop.class, 3);
+		//System.out.println(l);
 		
-		l.setName("Sony1");
-		l.setBrand("Brand Sony1");
-		l.setPrice(35000);
-		
-		session.save(l);
-		l.setPrice(30000);
+    	
+    	//Load will run if it's only used 
+		Laptop l1 = (Laptop) session.load(Laptop.class, 3);
+		//System.out.println(l1);
+	
 		
 		session.getTransaction().commit();
 		
-		session.evict(l);
-		l.setPrice(20000);
-    	
-    	/*
-    	Random r = new Random();
-    	for (int i=1; i<30; i++)
-    	{
-    		
-    		Laptop l = new Laptop();
-    		
-    		l.setName("Laptop: " + i);
-    		l.setBrand("Brand: " + i);
-    		l.setPrice(r.nextInt(50000));
-    		
-    		session.save(l);
-    	}*/
+		
     	   	
     	
     }
