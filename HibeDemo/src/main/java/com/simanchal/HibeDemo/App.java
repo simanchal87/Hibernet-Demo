@@ -1,10 +1,7 @@
 package com.simanchal.HibeDemo;
 
-import java.util.List;
-import java.util.Map;
+import java.util.Random;
 
-import org.hibernate.Criteria;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -16,27 +13,46 @@ public class App
 {
     public static void main( String[] args )
     {
-    	Student s1 = null;
     	
-    	Configuration con = new Configuration().configure().addAnnotatedClass(Student.class);
+    	
+    	Configuration con = new Configuration().configure().addAnnotatedClass(Laptop.class);
     	ServiceRegistry reg = new ServiceRegistryBuilder().applySettings(con.getProperties()).buildServiceRegistry();
     	SessionFactory sf = con.buildSessionFactory(reg);
     	
     	Session session = sf.openSession();
     	session.beginTransaction();
     	
-    	SQLQuery q = session.createSQLQuery("select sname, mark from Student where mark> 60");
     	
-    	q.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
     	
-    	List students = q.list();
-    			
-    	for(Object o : students)
+    	
+    	Laptop l = new Laptop();
+		
+		l.setName("Sony1");
+		l.setBrand("Brand Sony1");
+		l.setPrice(35000);
+		
+		session.save(l);
+		l.setPrice(30000);
+		
+		session.getTransaction().commit();
+		
+		session.evict(l);
+		l.setPrice(20000);
+    	
+    	/*
+    	Random r = new Random();
+    	for (int i=1; i<30; i++)
     	{
-    		Map m = (Map)o;
-    		System.out.println(m.get("SNAME") + " : " + m.get("MARK"));
-    	}
+    		
+    		Laptop l = new Laptop();
+    		
+    		l.setName("Laptop: " + i);
+    		l.setBrand("Brand: " + i);
+    		l.setPrice(r.nextInt(50000));
+    		
+    		session.save(l);
+    	}*/
     	   	
-    	session.getTransaction().commit();
+    	
     }
 }
