@@ -1,0 +1,4 @@
+HR Local DB	hr@//localhost:1521/ORCLPDB
+
+
+mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc -Dpackaging=jar -Dversion=12.1.0.2 -Dfile=C:\Simi\JAVA\Eclipse\ojdbc_12.1.0.2\ojdbc6.jar -DgeneratePom=true

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_1.xsd"
+         version="2.1">
+  
+         
+<persistence-unit name="pu">
+  <provider>org.hibernate.ejb.HibernatePersistence</provider>
+ 
+  <properties>
+     <property name="hibernate.connection.driver_class">org.h2.Driver</property>
+     <property name="hibernate.connection.url">jdbc:h2:tcp://localhost/~/onlineshopping</property>
+     <property name="hibernate.connection.username">sa</property>
+     <property name="hibernate.connection.password"></property>
+   </properties>
+   
+  </persistence-unit>
+</persistence>

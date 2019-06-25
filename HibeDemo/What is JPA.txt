@@ -1,0 +1,3 @@
+JPA (This is a just specification, not tool) - JAVA persistence API (Application program Interface)
+
+ORM Object Relational Mapping - Tools are Hibernate, iBitis and TopLink

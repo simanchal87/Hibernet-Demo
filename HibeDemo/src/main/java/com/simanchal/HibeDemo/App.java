@@ -1,12 +1,8 @@
 package com.simanchal.HibeDemo;
 
-import java.util.Random;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 
 public class App 
@@ -14,25 +10,13 @@ public class App
     public static void main( String[] args )
     {
     	
+    	EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
+    	EntityManager em = emf.createEntityManager();
     	
-    	Configuration con = new Configuration().configure().addAnnotatedClass(Laptop.class);
-    	ServiceRegistry reg = new ServiceRegistryBuilder().applySettings(con.getProperties()).buildServiceRegistry();
-    	SessionFactory sf = con.buildSessionFactory(reg);
+    	Laptop l =em.find(Laptop.class, 2);
     	
-    	Session session = sf.openSession();
-    	session.beginTransaction();
     	
-    	//get will run even if it's not used anywhere
-    	Laptop l = (Laptop) session.get(Laptop.class, 3);
-		//System.out.println(l);
-		
-    	
-    	//Load will run if it's only used 
-		Laptop l1 = (Laptop) session.load(Laptop.class, 3);
-		//System.out.println(l1);
-	
-		
-		session.getTransaction().commit();
+    	System.out.println(l);
 		
 		
     	   	
